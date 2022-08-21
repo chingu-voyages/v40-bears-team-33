@@ -1,0 +1,31 @@
+{
+  "name": "payup-client",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@types/react-icons": "^3.0.0",
+    "framer-motion": "^7.2.0",
+    "jotai": "^1.8.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
+    "react-router-dom": "^6.3.0",
+    "reactjs-popup": "^2.0.5",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/parser": "^5.33.1",
+    "@vitejs/plugin-react": "^2.0.1",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.7"
+  }
+}
