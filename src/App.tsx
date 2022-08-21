@@ -1,11 +1,16 @@
 import styled, { ThemeProvider } from 'styled-components'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
+import Splash from './pages/splash/Splash'
 import { Light } from './Themes.style'
+import { isAuth } from './store'
+import { useAtom } from 'jotai'
 
 function App() {
 
-  // if authorized return app
+  const [auth, _setAuth] = useAtom(isAuth);
+
+  if (auth) {
   return (
     <ThemeProvider theme={Light}>
       <Container>
@@ -13,12 +18,22 @@ function App() {
         <Sidebar />
       </Container>
     </ThemeProvider>
-  )
+  );
+
+  } else {
+    return (
+    <ThemeProvider theme={Light}>
+      <Container>
+        <Splash />
+      </Container>
+    </ThemeProvider>
+    )
+  };
 
   // else return splash page
   // return ( <Container><Splash /></Container)
 
-}
+};
 
 const Container = styled.div`
   width: 100vw;
