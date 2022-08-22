@@ -5,7 +5,7 @@ import { setSplash } from '../../store'
 
 const SplashGreeting = () => {
 
-  const [ _splashView, setSplashView ] = useAtom(setSplash)
+  const [ splashView, setSplashView ] = useAtom(setSplash)
 
   return (
 
@@ -14,17 +14,17 @@ const SplashGreeting = () => {
           PayUp helps you settle scores, then settle up.
         </Headline>
           <Buttons>
-          <Button 
+            <Button 
             onClick={() => setSplashView('register')} 
             width="140px"
           >
-              get started
+              Get started
           </Button>
           <ButtonOutline 
             onClick={() => setSplashView('sign_in')}
             width="140px"
           >
-              sign in
+              Sign in
           </ButtonOutline>
           </Buttons>
           </>
@@ -35,6 +35,8 @@ const Headline = styled.h1`
   display: flex;
   margin: auto;
   width: 100%;
+  font-size: 2rem;
+  line-height: 2rem;
   max-width: 500px;
   text-align: center;
   font-family: ${({theme}) => theme.fonts.sans};

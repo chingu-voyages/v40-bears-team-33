@@ -5,52 +5,78 @@ import { FaUserAlt } from 'react-icons/fa'
 import { HiMail } from 'react-icons/hi'
 import { RiLockPasswordFill } from 'react-icons/ri'
 import { useAtom } from 'jotai'
-import { setSplash } from '../../store'
+import { setSplash, authForm } from '../../store'
+import { authQueries } from '../../queries/authQueries'
 
 const SplashRegister = () => {
 
-  const [ _splashView, setSplashView ] = useAtom(setSplash)
+  const [_splashView, setSplashView] = useAtom(setSplash)
+  const [form, setForm] = useAtom(authForm)
+  const { registerUser } = authQueries
+
+  const handleAuthForm = (e: any) => {
+    const { id, value } = e.target
+    setForm(prev => ({
+      ...prev,
+      [id]: value
+    }
+    ))
+  }
+
+  const onRegisterSubmit = () => {
+    const formData = {
+      username: form.username,
+      email: form.email,
+      password: form.password
+    }
+    // send formData to register route
+    registerUser(formData)
+  }
+
   return (
-  <Container>
-    <InputContainer>
-    <InputWithIcon 
-      type="email"
-      htmlFor="email"
-      icon={<HiMail size="12px" />}
-      onChange={() => console.log("function")}
-      id="email" 
-      placeholder="email"
-    />
-    </InputContainer>
-    <InputContainer>
-    <InputWithIcon 
-      type="text"
-      htmlFor="username"
-      icon={<FaUserAlt  size="12px"/>}
-      onChange={() => console.log("function")}
-      id="username" 
-      placeholder="username"
-    />
-    </InputContainer>
-    <InputContainer>
-    <InputWithIcon 
-      type="password"
-      htmlFor="password"
-      icon={<RiLockPasswordFill size="12px" />}
-      onChange={() => console.log("function")}
-      id="password" 
-      placeholder="password"
-    />
-    </InputContainer>
-    <Buttons>
-    <Button width="200px">
-      Register
-    </Button>
-    <SwitchForm onClick={() => setSplashView('sign_in')}>
-      Already have an account? Sign in instead.
-    </SwitchForm>
-    </Buttons>
-  </Container>
+    <Container>
+      <InputContainer>
+        <InputWithIcon
+          type="email"
+          htmlFor="email"
+          icon={<HiMail size="12px" />}
+          onChange={handleAuthForm}
+          id="email"
+          placeholder="email"
+        />
+      </InputContainer>
+      <InputContainer>
+        <InputWithIcon
+          type="text"
+          htmlFor="username"
+          icon={<FaUserAlt size="12px" />}
+          onChange={handleAuthForm}
+          id="username"
+          placeholder="username"
+        />
+      </InputContainer>
+      <InputContainer>
+        <InputWithIcon
+          type="password"
+          htmlFor="password"
+          icon={<RiLockPasswordFill size="12px" />}
+          onChange={handleAuthForm}
+          id="password"
+          placeholder="password"
+        />
+      </InputContainer>
+      <Buttons>
+        <Button
+          onClick={onRegisterSubmit}
+          width="200px"
+        >
+          Register
+        </Button>
+        <SwitchForm onClick={() => setSplashView('sign_in')}>
+          Already have an account? Sign in instead.
+        </SwitchForm>
+      </Buttons>
+    </Container>
   );
 };
 
