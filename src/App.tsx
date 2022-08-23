@@ -11,22 +11,22 @@ function App() {
   const [auth, _setAuth] = useAtom(isAuth);
 
   if (auth) {
-  return (
-    <ThemeProvider theme={Light}>
-      <Container>
-        <Navbar />
-        <Sidebar />
-      </Container>
-    </ThemeProvider>
-  );
+    return (
+      <ThemeProvider theme={Light}>
+        <Container>
+          <Navbar />
+          <Sidebar />
+        </Container>
+      </ThemeProvider>
+    );
 
   } else {
     return (
-    <ThemeProvider theme={Light}>
-      <Container>
-        <Splash />
-      </Container>
-    </ThemeProvider>
+      <ThemeProvider theme={Light}>
+        <Container>
+          <Splash />
+        </Container>
+      </ThemeProvider>
     )
   };
 

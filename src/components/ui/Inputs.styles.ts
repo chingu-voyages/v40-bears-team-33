@@ -6,7 +6,7 @@ export const Input = styled.input`
   font-family: ${props => props.theme.fonts.sans};
   font-size: 12px;
   padding-left: 10px !important;
-  height: 25px;
+  height: 30px;
   width: 175px;
   padding: 5px;
   border-radius: 0px 3px 3px 0px;

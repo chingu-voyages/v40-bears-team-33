@@ -5,30 +5,17 @@ import { HiMail } from 'react-icons/hi'
 import { RiLockPasswordFill } from 'react-icons/ri'
 import { useAtom } from 'jotai'
 import { setSplash, authForm } from '../../store'
-import { authQueries } from '../../queries/authQueries'
 
 const SplashSignIn = () => {
 
   const [_splashView, setSplashView] = useAtom(setSplash)
   const [form, setForm] = useAtom(authForm)
-  const { signInUser } = authQueries
 
-  const handleAuthForm = (e: any) => {
+  const handleAuthForm(e: ReactEventHandler) => {
     const { id, value } = e.target
-    setForm(prev => ({
-      ...prev,
+    setForm({
       [id]: value
-    }
-    ))
-  }
-
-  const onSignInSubmit = () => {
-    const formData = {
-      email: form.email,
-      password: form.password
-    }
-    // send formData to signin route
-    signInUser(formData)
+    })
   }
 
   return (
@@ -38,7 +25,7 @@ const SplashSignIn = () => {
           type="email"
           htmlFor="email"
           icon={<HiMail size="12px" />}
-          onChange={(e: React.FormEvent<HTMLInputElement>) => handleAuthForm(e)}
+          onChange={() => console.log("function")}
           id="email"
           placeholder="email"
         />
@@ -48,16 +35,13 @@ const SplashSignIn = () => {
           type="password"
           htmlFor="password"
           icon={<RiLockPasswordFill size="12px" />}
-          onChange={handleAuthForm}
+          onChange={(e) => handleAuthForm(e)}
           id="password"
           placeholder="password"
         />
       </InputContainer>
       <Buttons>
-        <Button
-          width="200px"
-          onClick={onSignInSubmit}
-        >
+        <Button width="200px">
           Sign in
         </Button>
         <SwitchForm onClick={() => setSplashView('register')}>
